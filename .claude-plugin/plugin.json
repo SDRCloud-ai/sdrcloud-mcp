@@ -1,0 +1,19 @@
+{
+  "name": "sdrcloud",
+  "version": "1.2.0",
+  "description": "Ask about your SDRCloud account: what is waiting, campaign results, conversions, why a lead or campaign stopped, job status and credits; and make HVO pages and personalised videos.",
+  "author": {
+    "name": "SDRCloud",
+    "url": "https://sdrcloud.ai"
+  },
+  "homepage": "https://sdrcloud.ai",
+  "repository": "https://github.com/SDRCloud-ai/sdrcloud-mcp",
+  "license": "Proprietary",
+  "keywords": [
+    "sales",
+    "outreach",
+    "sdr",
+    "campaigns",
+    "crm"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "sdrcloud",
+  "description": "SDRCloud plugins for Claude: ask about your outreach account from your AI client.",
+  "owner": {
+    "name": "SDRCloud"
+  },
+  "plugins": [
+    {
+      "name": "sdrcloud",
+      "source": "./",
+      "description": "SDRCloud for Claude",
+      "category": "productivity"
+    }
+  ]
+}

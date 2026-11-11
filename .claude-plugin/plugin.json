@@ -1,7 +1,7 @@
 {
   "name": "sdrcloud",
-  "version": "1.2.0",
-  "description": "Ask about your SDRCloud account: what is waiting, campaign results, conversions, why a lead or campaign stopped, job status and credits; and make HVO pages and personalised videos.",
+  "version": "1.2.9",
+  "description": "Ask about your SDRCloud account: what is waiting, campaign results, conversions, why a lead or campaign stopped, job status and credits; make HVO pages and personalised videos; set up campaigns as drafts; and rehearse them in Sim Lab.",
   "author": {
     "name": "SDRCloud",
     "url": "https://sdrcloud.ai"

@@ -1,10 +1,10 @@
 ---
 name: sdrcloud
-description: Read this before answering any question about the user's sales outreach in SDRCloud - their campaigns, leads, replies, drafts, results, conversions, jobs or credits - even when they do not say SDRCloud. It holds how to answer with the SDRCloud tools - formats, tables and charts, what to ask, and the rules for prospect text - that the tool descriptions do not. Also for making and changing their HVO pages and personalised videos. Covers what needs my attention, brief me, how did campaigns do, compare, trends, what changed, client updates, who converted, why a lead or campaign stopped, job status, credits, and make or change a page or video.
+description: Read this before answering any question about the user's sales outreach in SDRCloud - their campaigns, leads, replies, drafts, results, conversions, jobs or credits - even when they do not say SDRCloud. It holds how to answer with the SDRCloud tools - formats, tables and charts, what to ask, and the rules for prospect text - that the tool descriptions do not. Also for making and changing their HVO pages and personalised videos. Covers what needs my attention, brief me, how did campaigns do, compare, trends, what changed, client updates, who converted, why a lead or campaign stopped, job status, credits, agents, mailboxes, campaign setup, Sim Lab rehearsals, and making a page or video.
 license: Proprietary
 compatibility: Needs the SDRCloud MCP server connected (https://app.sdrcloud.ai/mcp).
 metadata:
-  version: "1.2.0"
+  version: "1.2.9"
   mcp-server: "https://app.sdrcloud.ai/mcp"
 ---
 
@@ -24,12 +24,29 @@ These are the SDRCloud MCP tools; your client may show them with a prefix, such 
 | How did my campaigns do? Compare campaigns, trends, what changed | `report_campaign_performance` |
 | Who converted? Meetings booked | `report_conversions` |
 | Why isn't this lead getting emails? | `lead_explain` |
-| Why did this campaign stop sending? | `campaign_check_readiness` |
-| Did my video, page, sync or document finish? Anything failed? | `status_get` |
+| Why did this campaign stop sending? What does it still need before it can start or resume? | `campaign_check_readiness` |
+| List my agents. Which mailboxes are connected? | `agent_list` |
+| Show me Sam's persona, signature or daily cap | `agent_get` |
+| Make a new sender agent: Sam, Head of Sales, friendly | `agent_create` once they agree; its mailbox is connected in the console |
+| Change an agent's tone, bio, signature or daily cap | `agent_get`, then `agent_update` |
+| Which documents have we uploaded? Are they processed? | `document_list` |
+| What does our deck say? Use our documents for the facts | `document_list`, then `document_get` |
+| Use this document in my draft campaign, or take it off | `campaign_document_link` |
+| How is campaign X set up? Its list, agents, rules | `campaign_get` |
+| Help me plan a new campaign. Which lists, fields, senders and templates can it use? | `campaign_setup_options` |
+| Set up this campaign for me. Save it as a draft | `campaign_setup_options`, plan it in the chat, then `campaign_create` once they agree |
+| Change the setup of my draft campaign: add a fact, another agent, one more email | `campaign_get`, then `campaign_update` |
+| Rehearse campaign X. What would the agent say if they push back on price? | `sim_open`, agree the scenarios, then `sim_run` |
+| Add test leads: made-up prospects, or copies of real ones from the list | `sim_leads_add` |
+| Is the rehearsal done? | `status_get` with the rehearsal's handle |
+| How did the rehearsal go? What did the agent write to each one? | `sim_results`, drawn as the rehearsal report |
+| Try a change before it goes live; test it on my active or paused campaign | `sim_setup_update`, then `sim_run` again |
+| Did my video, page, sync, document or rehearsal finish? Anything failed? | `status_get` |
 | Credits left, runway, what spent them | `credits_get` with the parts the question needs |
 | What is the record called X? | `search` |
 | Mark these notifications read (only when asked) | `notifications_mark_read` |
 | What are our brand colours, fonts and logos? | `brand_get` |
+| Change our brand colours, fonts or button style; use this picture as our logo | `brand_get`, then `brand_update` |
 | Which pictures do we have? Use this picture from a website | `media_list`; `media_import` for a public https address |
 | Make a page like this. A new HVO page or microsite | `brand_get` and `media_list` for the look, then `hvo_template_create` |
 | Change this page: bigger headline, swap the picture | `hvo_template_get`, then `hvo_template_update` |
@@ -74,7 +91,7 @@ Work like a designer with a client: a first draft fast, then change what they po
 4. **Ask only when it matters.** If a name matches several records, or the question could mean very different things, ask one short question with numbered choices. Otherwise pick the sensible default, say which you picked, and answer. See [references/conversation.md](references/conversation.md).
 5. **End with one useful next step**, specific to what you found ("Want me to check why Beta Webinar stopped sending?"), not a generic offer.
 
-Use the fill-in templates for the outputs admins ask for most: [daily brief](assets/templates/daily-brief.md), [weekly client update](assets/templates/client-update.md), [campaign comparison](assets/templates/campaign-comparison.md), [what changed](assets/templates/what-changed.md), and after each change to a page or video, the [draft update](assets/templates/draft-update.md).
+Use the fill-in templates for the outputs admins ask for most: [daily brief](assets/templates/daily-brief.md), [weekly client update](assets/templates/client-update.md), [campaign comparison](assets/templates/campaign-comparison.md), [what changed](assets/templates/what-changed.md), [rehearsal report](assets/templates/rehearsal-report.md), and after each change to a page or video, the [draft update](assets/templates/draft-update.md).
 
 ## The jobs admins come with
 
@@ -83,10 +100,13 @@ Use the fill-in templates for the outputs admins ask for most: [daily brief](ass
 - Results, comparisons, trends, client updates: [references/reporting.md](references/reporting.md)
 - Credits, runway and spend: [references/credits.md](references/credits.md)
 - Making or changing a page or video: [references/pages-and-videos.md](references/pages-and-videos.md)
+- Setting up, rehearsing or changing a campaign: [references/campaigns-and-sim-lab.md](references/campaigns-and-sim-lab.md)
 
 ## Asking first and refusing
 
-- These tools change only what the person asks for: they mark notifications read, bring pictures in, and make or change page and video templates as drafts. Two cost credits, always after the person agrees (above). They cannot pause, send, approve, delete or buy credits, and they never send anything to a prospect themselves: say so at once and give the console link.
+- These tools change only what the person asks for: they mark notifications read, bring pictures in, change the brand kit, make or change page and video templates as drafts, make and change sender agents, link documents to a draft campaign, save a campaign's setup as a draft campaign, and rehearse a campaign in its Sim Lab rehearsal space, a hidden copy that emails no one. Two cost credits, always after the person agrees (above). They cannot launch, pause or resume a campaign, change one that is active or paused or an agent that sends for one, connect a mailbox, upload a document, send, approve, delete or buy credits, and they never send anything to a prospect themselves: say so at once and give the console link.
+- Setting up a campaign: propose its setup in the chat, section by section, from `campaign_setup_options` and what the person gave you, and let them correct it. Save it with `campaign_create` only when they say to save it ("save it", "go ahead"): new details or a "good" are not a yes, so show the updated setup and ask "Save it?". One call carries every section; then check it with `campaign_check_readiness`. It is a draft that emails no one; launching is done in the console: give the link. The full job is in [references/campaigns-and-sim-lab.md](references/campaigns-and-sim-lab.md).
+- Rehearsing: agree the scenarios and how many leads with the person, then start `sim_run`; each step is a turn of the agent on the Sim Lab allowance. A rehearsal never touches the campaign or its prospects, and no tool copies it onto the campaign: `sim_setup_update` changes only the rehearsal, so apply a tested change to a draft with `campaign_update`, and to an active or paused campaign in the console.
 - Never ask for or accept a password, API key or payment detail. Signing in happens in the browser.
 
 ## When a tool returns an error
@@ -95,7 +115,7 @@ Read its code, message and `fix`: they say what to change.
 
 - `VALIDATION`: correct the input as the message says. On `confirmCredits` it means the price moved and nothing was spent: tell the person the new price and ask again; never confirm a price they did not see.
 - `INSUFFICIENT_CREDITS`: nothing was spent. Say the account needs more credits and give the link in `fix`; do not retry.
-- `CONFLICT` on a template change: someone changed it since you read it (`expectedVersion` is out of date). Read it again with `hvo_template_get` or `video_template_get`, make the change on the latest version, and say what else had changed. On a `requestId` it means that call already ran: do not repeat it; use a new `requestId` only for a new change.
+- `CONFLICT` on a template, campaign, agent or brand kit change: someone changed it since you read it (`expectedVersion` is out of date). Read it again with `hvo_template_get`, `video_template_get`, `campaign_get`, `agent_get`, `brand_get` or, for a rehearsal, `sim_open`, make the change on the latest version, and say what else had changed. On a `requestId` it means that call already ran: do not repeat it; use a new `requestId` only for a new change.
 - `NOT_FOUND`: offer the close matches the error lists, or ask. `search` finds campaigns, agents, data sources and templates, not leads.
 - `AMBIGUOUS`: call again once per candidate and cover each, or ask which one.
 - `LIMIT`: ask for less (a shorter period, fewer campaigns); if the error gives a reset time, say it.
